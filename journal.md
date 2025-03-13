@@ -26,3 +26,11 @@
 - Autorisation des connexions HTTP : OK
 - Vérification du firewall avec `nmap` : OK
 
+### Étape 5 : Expérimentation et démonstration
+
+- Vérification des ports ouverts avec `nmap` : OK
+- Vérification de l’accès au serveur web avec `curl` : OK
+- Blocage des méthodes HTTP non autorisées (`DELETE`, `PUT`...) : OK
+- Test du firewall UFW : SSH restreint, HTTP ouvert, HTTPS filtré : OK
+- Firewall efficace et bloque bien les accès non autorisés : OK
+
