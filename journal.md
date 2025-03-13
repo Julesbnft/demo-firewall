@@ -34,3 +34,10 @@
 - Test du firewall UFW : SSH restreint, HTTP ouvert, HTTPS filtré : OK
 - Firewall efficace et bloque bien les accès non autorisés : OK
 
+### Étape 6 : Mise en place d’une DMZ
+
+- Ajout d’une troisième VM pour représenter la DMZ : OK
+- Configuration du réseau et attribution d’une IP fixe : OK
+- Vérification de la connectivité avant firewall : OK
+- Implémentation du firewall pour isoler la DMZ : OK
+- Test de l’isolement réseau (ping, HTTP, SSH) : OK
