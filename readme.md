@@ -1,96 +1,79 @@
 # SAE Sécurité Informatique : Mise en place d’un Firewall et durcissement d’un serveur Web
 
-## Description
+## Dates du projet
+- **Début :** [03/03/2025]
+- **Fin :** [14/03/2025]
 
-Ce projet a pour objectif de mettre en place un firewall sur un serveur Debian et de sécuriser un serveur web Nginx. L'ensemble est déployé via Vagrant et testé à l'aide de différentes commandes de diagnostic réseau.
+## Objectif du projet
+Ce projet a pour objectif de **mettre en place un firewall** sur un serveur Debian et de **sécuriser un serveur web Nginx**.  
+L’ensemble a été déployé via Vagrant et testé à l’aide d’outils de diagnostic réseau.
 
 ## Architecture
 
-L'infrastructure repose sur deux machines virtuelles Debian configurées avec Vagrant :
+L’infrastructure repose sur deux machines virtuelles Debian configurées avec Vagrant :
 - **Server (192.168.56.10)** : héberge le serveur web Nginx et le firewall UFW
 - **Client (192.168.56.11)** : utilisé pour tester la connectivité et la sécurité du serveur
 
-Un troisième hôte pourra être ajouté pour démontrer la mise en place d’une DMZ.
-
 ## Technologies utilisées
 
-- Vagrant pour l'automatisation des machines virtuelles
-- Debian 12 (Bookworm) comme système d’exploitation
-- Nginx pour le serveur web
-- UFW (Uncomplicated Firewall) pour la configuration du pare-feu
-- Outils de test réseau : `curl`, `nmap`
+- **Vagrant** : pour l’automatisation des machines virtuelles
+- **Debian 12 (Bookworm)** : système d’exploitation stable et sécurisé
+- **Nginx** : serveur web
+- **UFW (Uncomplicated Firewall)** : configuration du pare-feu
+- **Outils de test réseau** : `curl`, `nmap`
 
-## Installation et utilisation
+## Étapes principales
 
-### Prérequis
+1. **Préparation de l’environnement** :  
+   Création de deux VMs avec Vagrant et VirtualBox, configuration réseau, et tests de connectivité.
 
-- **Vagrant** et **VirtualBox** doivent être installés sur votre machine hôte.
+2. **Installation de Nginx** :  
+   Déploiement et configuration de Nginx sur la VM serveur, vérification des accès depuis la VM client.
 
-### Étapes d’installation
+3. **Mise en place du Firewall** :  
+   Installation et activation de UFW, définition des règles de sécurité (blocage par défaut, autorisation de HTTP/SSH).
 
-1. **Cloner le dépôt**
-   ```bash
-   git clone https://github.com/Julesbnft/demo-firewall2.git
-   cd demo-firewall2
-   ```
+4. **Sécurisation du serveur web** :  
+   Ajout de headers de sécurité (HSTS, X-Frame-Options, etc.), restriction des méthodes HTTP.
 
-2. **Démarrer les machines virtuelles**
-   ```bash
-   vagrant up
-   ```
+5. **Mise en place d’une DMZ** :  
+   Création d’une troisième VM représentant une DMZ, tentative de configuration pour isoler la DMZ.
 
-3. **Accéder aux machines**
-   - Serveur :  
-     ```bash
-     vagrant ssh server
-     ```
-   - Client :  
-     ```bash
-     vagrant ssh client
-     ```
+## Résultats obtenus
 
-4. **Configurer le serveur et le firewall**
-   ```bash
-   cd /vagrant
-   chmod +x setup.sh firewall.sh
-   sudo ./setup.sh
-   sudo ./firewall.sh
-   ```
+- Serveur Nginx fonctionnel et accessible en HTTP.
+- Firewall actif bloquant les connexions non autorisées.
+- Headers de sécurité HTTP appliqués pour limiter les risques d’attaques.
 
-5. **Tester l'accès depuis le client**
-   ```bash
-   curl -I 192.168.56.10
-   ```
+## Problèmes rencontrés
 
-## Scripts et fonctionnalités
+- Difficulté à maintenir l’accès SSH après certaines modifications des règles UFW.
+- Impossibilité de poursuivre la configuration de la DMZ au-delà d’un certain point à cause de ces restrictions.
 
-### `setup.sh`
-Ce script installe et configure le serveur Nginx sur la VM serveur.
+## Possibilités d’amélioration
 
-### `firewall.sh`
-Script qui applique les règles UFW pour sécuriser le serveur.
+- Compléter la mise en place de la DMZ et la vérification de son isolement.
+- Ajouter un système de détection d’intrusion (IDS).
+- Créer un script unique pour automatiser toutes les étapes de configuration.
 
-### `test.sh`
-Permet de tester la connectivité et l’accès aux services depuis la VM client.
-
-## Tests et validation
-
-### Vérification du firewall
-
-Depuis la VM client :
-```bash
-nmap -p 22,80 192.168.56.10
-```
-Ce test doit montrer que le port 80 est ouvert et le port 22 fermé sauf pour le client.
-
-### Vérification du serveur web
-
-Depuis la VM client :
-```bash
-curl -I 192.168.56.10
-```
-La réponse doit contenir `HTTP/1.1 200 OK`, prouvant que le serveur web fonctionne.
+---
 
 ## Journal de bord
+Toutes les étapes sont documentées dans [journal.md](./journal.md).
 
-Toutes les étapes de mise en place et de configuration sont documentées dans `journal.md`.
+## Commandes utiles
+
+accéder aux machines : 
+vagrant ssh server
+vagrant ssh client
+
+Tester l’accès au serveur :
+curl -I http://192.168.56.10
+
+Vérifier le firewall :
+nmap -p 22,80 192.168.56.10
+
+### Démarrer les VMs :
+```bash
+vagrant up
+
