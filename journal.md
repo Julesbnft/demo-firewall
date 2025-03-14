@@ -41,3 +41,27 @@
 - Vérification de la connectivité avant firewall : OK
 - Implémentation du firewall pour isoler la DMZ : OK
 - Test de l’isolement réseau (ping, HTTP, SSH) : OK
+
+
+    Séance du 03/03/2025 – 13h00 à 16h00
+    Première ébauche du sujet. Documentation. Création du répo GitHub.
+
+    Séances du 05/03/2025 – 08h30 à 11h30 et 14h30 à 17h30
+    Création des VM Debian. Mise en place d'un premier Vagrantfile.
+
+    Séance du 06/03/2025 – 13h00 à 16h00 et 07/03/2025 – 08h30 à 11h30
+    Création du README. Continuité du Vagrantfile.
+
+    Séances du 10/03/2025 et 11/03/2025 – 08h30 à 11h30
+    Continuité du Vagrantfile.
+
+    Journée du 12/03/2025 – 08h30 à 16h00
+    Continuité du Vagrantfile.
+
+    Séance du 13/03/2025 – 13h00 à 16h00
+    Sécurisation du serveur nginx.
+
+    Séance du 14/03/2025 – 08h30 à 11h30
+    Diaporama, schéma.
+
+    Soutenance orale – 14/03/2025 – 13h00 à 16h00 
