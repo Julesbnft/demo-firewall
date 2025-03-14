@@ -43,6 +43,12 @@
 - Test de l’isolement réseau (ping, HTTP, SSH) : OK
 
 
+
+
+
+
+
+
     Séance du 03/03/2025 – 13h00 à 16h00
     Première ébauche du sujet. Documentation. Création du répo GitHub.
 
